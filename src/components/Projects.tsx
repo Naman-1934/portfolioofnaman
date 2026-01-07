@@ -21,7 +21,7 @@ const Projects = () => {
         "Purchase contribution visualization"
       ],
       image: vendorPerformance,
-      url: "https://ibb.co/sdTxzfzH",
+      url: "https://ibb.co/FkpRMn97",
     },
     {
       title: "Retail Customer Behavior & Shopping Trends Dashboard",
@@ -35,7 +35,7 @@ const Projects = () => {
         "Subscription status analytics"
       ],
       image: customerBehavior,
-      url: "https://ibb.co/9mqHtLXr",
+      url: "https://ibb.co/WNjgd0V3",
     },
     {
       title: "E-Commerce Sales Dashboard",
@@ -49,7 +49,7 @@ const Projects = () => {
         "Profit by sub-category insights"
       ],
       image: ecommerceSales,
-      url: "#",
+      url: "https://ibb.co/mrh4D9Jm",
     },
     {
       title: "Cricket Best-11",
@@ -63,7 +63,7 @@ const Projects = () => {
         "Interactive player comparison"
       ],
       image: cricketBest11,
-      url: "#",
+      url: "https://ibb.co/1t933sVV",
     },
   ];
 
@@ -88,18 +88,18 @@ const Projects = () => {
                 className="overflow-hidden hover:shadow-2xl transition-all duration-300 animate-fade-in-up"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="grid md:grid-cols-5 gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
                   {/* Project Visual */}
-                  <div className="md:col-span-2 bg-muted overflow-hidden flex items-center justify-center">
+                  <div className="bg-muted overflow-hidden flex items-center justify-center p-4 min-h-[280px]">
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain max-h-[300px] rounded-lg"
                     />
                   </div>
 
                   {/* Project Details */}
-                  <div className="md:col-span-3 p-8">
+                  <div className="p-8">
                     <div className="mb-4">
                       <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                       <p className="text-muted-foreground font-medium">{project.subtitle}</p>
