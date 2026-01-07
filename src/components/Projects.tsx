@@ -2,38 +2,68 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import cricketDashboard from "@/assets/cricket-dashboard.png";
-import vendorDashboard from "@/assets/vendor-dashboard.png";
+import vendorPerformance from "@/assets/vendor-performance.png";
+import customerBehavior from "@/assets/customer-behavior.png";
+import ecommerceSales from "@/assets/ecommerce-sales.png";
+import cricketBest11 from "@/assets/cricket-best11.png";
 
 const Projects = () => {
   const projects = [
     {
-      title: "Best 11 T20 Cricket Team",
-      subtitle: "2022 T20 World Cup Analysis",
-      description: "Analyzed player performance data from the 2022 T20 World Cup and created an algorithmic selection of the best XI based on key performance metrics including batting strike rate, bowling economy, and fielding statistics.",
-      tech: ["Python", "pandas", "matplotlib", "NumPy"],
+      title: "Vendor Performance Dashboard",
+      subtitle: "Sales & Profitability Analytics",
+      description: "This dashboard provides a comprehensive sales and profitability overview, highlighting total sales, purchases, gross profit, profit margin, and unsold capital along with vendor and brand-wise performance. It helps identify top contributors and low-performing vendors/brands to support data-driven inventory and profitability decisions.",
+      tech: ["Power BI", "SQL", "Excel"],
       highlights: [
-        "Processed 500+ player records",
-        "Multi-criteria decision analysis",
-        "Interactive performance visualizations",
-        "Statistical validation of selections"
+        "Total sales & profit tracking",
+        "Vendor & brand-wise analysis",
+        "Low performer identification",
+        "Purchase contribution visualization"
       ],
-      image: cricketDashboard,
+      image: vendorPerformance,
       url: "https://ibb.co/sdTxzfzH",
     },
     {
-      title: "Vendor Performance Dashboard",
-      subtitle: "Power BI Analytics Solution",
-      description: "Built an interactive Power BI dashboard to compare vendor performance across multiple KPIs. Highlights best/worst performers with actionable recommendations for procurement optimization.",
-      tech: ["Power BI", "SQL", "DAX", "Excel"],
+      title: "Retail Customer Behavior & Shopping Trends Dashboard",
+      subtitle: "E-Commerce Customer Analytics",
+      description: "This project presents a Customer Behavior Dashboard that analyzes e-commerce data to track customer count, average purchase value, ratings, and revenue across categories, age groups, and subscription status, enabling data-driven business insights.",
+      tech: ["Power BI", "SQL", "Excel"],
       highlights: [
-        "Real-time KPI tracking",
-        "Vendor comparison matrix",
-        "Cost savings identification",
-        "Interactive drill-down features"
+        "Customer segmentation analysis",
+        "Revenue by category tracking",
+        "Age group behavior insights",
+        "Subscription status analytics"
       ],
-      image: vendorDashboard,
+      image: customerBehavior,
       url: "https://ibb.co/9mqHtLXr",
+    },
+    {
+      title: "E-Commerce Sales Dashboard",
+      subtitle: "Comprehensive Sales Analytics",
+      description: "E-commerce sales details include insights on total sales revenue, number of orders, profit, and average order value, along with breakdowns by product category, region, customer segment, and time period. The analysis helps track sales trends, identify top-performing products, and understand customer purchasing behavior for better business decisions.",
+      tech: ["Power BI", "SQL", "Excel"],
+      highlights: [
+        "Multi-category sales tracking",
+        "Payment mode analysis",
+        "State-wise performance metrics",
+        "Profit by sub-category insights"
+      ],
+      image: ecommerceSales,
+      url: "#",
+    },
+    {
+      title: "Cricket Best-11",
+      subtitle: "T20 World Cup Player Analysis",
+      description: "This project features a cricket player performance analysis dashboard that evaluates power hitters using metrics such as runs, strike rate, batting average, and boundary percentage. It enables data-driven player comparison and optimal team selection through interactive visuals and role-based insights.",
+      tech: ["Power BI", "Python", "SQL", "Excel"],
+      highlights: [
+        "Player performance metrics",
+        "Strike rate & boundary analysis",
+        "Role-based player categorization",
+        "Interactive player comparison"
+      ],
+      image: cricketBest11,
+      url: "#",
     },
   ];
 
@@ -71,7 +101,7 @@ const Projects = () => {
                   {/* Project Details */}
                   <div className="md:col-span-3 p-8">
                     <div className="mb-4">
-                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                       <p className="text-muted-foreground font-medium">{project.subtitle}</p>
                     </div>
 
