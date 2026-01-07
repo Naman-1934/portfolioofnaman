@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Database, BarChart3, TrendingUp, FileSearch } from "lucide-react";
+import { Database, BarChart3, TrendingUp, FileSearch, Code } from "lucide-react";
 
 const Services = () => {
   const services = [
@@ -7,25 +7,26 @@ const Services = () => {
       icon: FileSearch,
       title: "Data Analysis",
       description: "End-to-end analysis: data gathering, cleaning, exploratory data analysis (EDA) and actionable insights extraction.",
-      color: "bg-chart-1",
     },
     {
       icon: BarChart3,
       title: "Dashboard Creation",
       description: "Interactive dashboards with Power BI for vendor performance tracking, KPI monitoring, and real-time analytics.",
-      color: "bg-chart-2",
     },
     {
       icon: TrendingUp,
       title: "Model Development",
       description: "Build, evaluate and deploy predictive models using Python. Includes feature engineering and model validation.",
-      color: "bg-chart-3",
     },
     {
       icon: Database,
       title: "Data Engineering",
       description: "Database design, SQL query optimization, data pipeline setup, and ETL processes for efficient data workflows.",
-      color: "bg-chart-4",
+    },
+    {
+      icon: Code,
+      title: "Web Development",
+      description: "Build responsive, modern web applications with clean UI/UX design, optimized performance, and seamless user experience.",
     },
   ];
 
@@ -43,17 +44,17 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <Card 
                 key={service.title}
                 className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up group"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`w-16 h-16 rounded-2xl ${service.color} bg-opacity-10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <service.icon className="w-8 h-8" style={{ color: `hsl(var(--${service.color.replace('bg-', '')}))` }} />
+                <div className="flex items-center gap-4 mb-4">
+                  <service.icon className="w-8 h-8 text-primary" />
+                  <h3 className="text-xl font-bold">{service.title}</h3>
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
