@@ -81,66 +81,64 @@ const Projects = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card 
                 key={project.title}
                 className="overflow-hidden hover:shadow-2xl transition-all duration-300 animate-fade-in-up"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Project Visual */}
-                  <div className="bg-muted overflow-hidden flex items-center justify-center p-4 min-h-[280px]">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-auto object-contain max-h-[300px] rounded-lg"
-                    />
+                {/* Project Image */}
+                <div className="bg-muted overflow-hidden flex items-center justify-center p-4">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-auto object-contain max-h-[220px] rounded-lg"
+                  />
+                </div>
+
+                {/* Project Details */}
+                <div className="p-6">
+                  <div className="mb-3">
+                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm font-medium">{project.subtitle}</p>
                   </div>
 
-                  {/* Project Details */}
-                  <div className="p-8">
-                    <div className="mb-4">
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-muted-foreground font-medium">{project.subtitle}</p>
-                    </div>
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
 
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="mb-6">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4 text-primary" />
-                        Key Highlights
-                      </h4>
-                      <ul className="grid grid-cols-2 gap-2">
-                        {project.highlights.map((highlight) => (
-                          <li key={highlight} className="flex items-start gap-2 text-sm">
-                            <span className="text-primary mt-1">✓</span>
-                            <span className="text-muted-foreground">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mb-6">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="bg-secondary">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <Button asChild className="bg-primary hover:bg-primary/90">
-                      <a href={project.url} target="_blank" rel="noopener noreferrer">
-                        View Case Study
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-sm mb-2 flex items-center gap-2">
+                      <ExternalLink className="w-3 h-3 text-primary" />
+                      Key Highlights
+                    </h4>
+                    <ul className="grid grid-cols-2 gap-1">
+                      {project.highlights.map((highlight) => (
+                        <li key={highlight} className="flex items-start gap-1 text-xs">
+                          <span className="text-primary mt-0.5">✓</span>
+                          <span className="text-muted-foreground">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
+
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-secondary text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Button asChild size="sm" className="bg-primary hover:bg-primary/90 w-full">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                      View Case Study
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  </Button>
                 </div>
               </Card>
             ))}
