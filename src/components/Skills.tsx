@@ -5,8 +5,11 @@ const Skills = () => {
   const skills = [
     { name: "Python", level: 85, icon: Code, color: "bg-chart-1" },
     { name: "SQL", level: 80, icon: Database, color: "bg-chart-2" },
-    { name: "Power BI", level: 90, icon: BarChart3, color: "bg-chart-3" },
-    { name: "Excel", level: 85, icon: FileSpreadsheet, color: "bg-chart-4" },
+    { name: "Excel", level: 85, icon: FileSpreadsheet, color: "bg-chart-3" },
+    { name: "Power BI", level: 90, icon: BarChart3, color: "bg-chart-4" },
+    { name: "Flask", level: 75, icon: Code, color: "bg-chart-1" },
+    { name: "Django", level: 70, icon: Code, color: "bg-chart-2" },
+    { name: "matplotlib", level: 80, icon: BarChart3, color: "bg-chart-3" },
   ];
 
   const tools = [
