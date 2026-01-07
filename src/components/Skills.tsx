@@ -10,14 +10,13 @@ const Skills = () => {
   ];
 
   const tools = [
-    "Jupyter Notebook",
-    "pandas",
-    "NumPy",
+    "Python",
+    "SQL",
+    "Excel",
+    "Power BI",
+    "Flask",
+    "Django",
     "matplotlib",
-    "plotly",
-    "scikit-learn",
-    "PostgreSQL",
-    "MySQL",
   ];
 
   return (
