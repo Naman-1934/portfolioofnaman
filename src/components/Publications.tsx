@@ -5,12 +5,12 @@ import ieeePublication from "@/assets/ieee-publication.png";
 
 const Publications = () => {
   return (
-    <section id="publications" className="py-20 bg-muted/30">
+    <section id="achievement" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-chart-1 to-chart-2 bg-clip-text text-transparent">
-              Publications
+              Achievement
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full"></div>
