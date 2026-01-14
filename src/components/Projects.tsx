@@ -6,6 +6,8 @@ import vendorPerformance from "@/assets/vendor-performance.png";
 import customerBehavior from "@/assets/customer-behavior.png";
 import ecommerceSales from "@/assets/ecommerce-sales.png";
 import cricketBest11 from "@/assets/cricket-best11.png";
+import djangoPortfolio from "@/assets/django-portfolio.png";
+import qrMenuGenerator from "@/assets/qr-menu-generator.png";
 
 const Projects = () => {
   const projects = [
@@ -64,6 +66,34 @@ const Projects = () => {
       ],
       image: cricketBest11,
       url: "https://ibb.co/1t933sVV",
+    },
+    {
+      title: "Dynamic Portfolio Website",
+      subtitle: "Personal Portfolio with Django",
+      description: "A fully dynamic and responsive portfolio website built using Django, HTML, and CSS. Features a sticky left sidebar with profile information that remains fixed while the right content section smoothly scrolls, creating an engaging user experience. All interactive features are fully functional with seamless navigation between sections.",
+      tech: ["Django", "HTML", "CSS", "Python"],
+      highlights: [
+        "Sticky sidebar navigation",
+        "Dynamic scrollable content",
+        "Responsive design layout",
+        "Fully functional interactions"
+      ],
+      image: djangoPortfolio,
+      url: "#",
+    },
+    {
+      title: "Restaurant QR Menu Generator",
+      subtitle: "Contactless Menu Solution",
+      description: "A web application designed to help restaurants create contactless digital menus. Simply enter the restaurant name and Google Drive URL containing the menu, and the system generates a downloadable QR code. This solution promotes hygiene and convenience for customers while reducing physical contact with traditional menus.",
+      tech: ["Python", "QR Code Library", "Web Development"],
+      highlights: [
+        "Instant QR code generation",
+        "Google Drive integration",
+        "Easy download functionality",
+        "Hygiene-focused solution"
+      ],
+      image: qrMenuGenerator,
+      url: "#",
     },
   ];
 
