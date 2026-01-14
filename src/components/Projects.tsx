@@ -79,7 +79,7 @@ const Projects = () => {
         "Fully functional interactions"
       ],
       image: djangoPortfolio,
-      url: "#",
+      url: "https://ibb.co/Xr88G9Wv",
     },
     {
       title: "Restaurant QR Menu Generator",
@@ -93,7 +93,7 @@ const Projects = () => {
         "Hygiene-focused solution"
       ],
       image: qrMenuGenerator,
-      url: "#",
+      url: "https://ibb.co/hRVgn7LM",
     },
   ];
 
