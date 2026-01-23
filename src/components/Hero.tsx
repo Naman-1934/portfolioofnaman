@@ -104,13 +104,6 @@ const Hero = () => {
                 </div>
               </a>
 
-              {/* Data point badge */}
-              <div className="absolute -left-4 bottom-20 bg-card rounded-xl shadow-lg p-4 animate-bounce-subtle">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-primary">100+</p>
-                  <p className="text-xs text-muted-foreground">Projects<br/>Analyzed</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
