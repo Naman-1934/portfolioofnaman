@@ -6,6 +6,7 @@ import vendorPerformance from "@/assets/vendor-performance.png";
 import customerBehavior from "@/assets/customer-behavior.png";
 import ecommerceSales from "@/assets/ecommerce-sales.png";
 import cricketBest11 from "@/assets/cricket-best11.png";
+import lifeInsuranceClaims from "@/assets/life-insurance-claims.png";
 import djangoPortfolio from "@/assets/django-portfolio.png";
 import qrMenuGenerator from "@/assets/qr-menu-generator.png";
 
@@ -66,6 +67,20 @@ const Projects = () => {
       ],
       image: cricketBest11,
       url: "https://ibb.co/1t933sVV",
+    },
+    {
+      title: "Life Insurance Claims Analysis Dashboard",
+      subtitle: "Claims Performance Analytics",
+      description: "Created a Power BI dashboard to monitor and analyze Life Insurance claims performance across years, insurers, and claim status categories.",
+      tech: ["Python", "Power BI"],
+      highlights: [
+        "Claims performance monitoring",
+        "Year-wise trend analysis",
+        "Insurer comparison metrics",
+        "Status category breakdown"
+      ],
+      image: lifeInsuranceClaims,
+      url: "https://ibb.co/hJgr9Bvb",
     },
     {
       title: "Dynamic Portfolio Website",
