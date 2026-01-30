@@ -7,9 +7,29 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 
+// Input length limits following security best practices
+const MAX_LENGTHS = {
+  name: 100,
+  email: 254, // RFC 5321 standard
+  phone: 20,
+  message: 2000,
+};
+
+// Sanitize input by trimming and escaping HTML entities
+const sanitizeInput = (input: string): string => {
+  return input
+    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+};
+
 const Contact = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState(""); // Bot detection field
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,11 +42,27 @@ const Contact = () => {
     emailjs.init("Chv9iD281PR4rDvyE");
   }, []);
 
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    // Enforce max length on input
+    const maxLength = MAX_LENGTHS[field];
+    const truncatedValue = value.slice(0, maxLength);
+    setFormData({ ...formData, [field]: truncatedValue });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check - if filled, it's likely a bot
+    if (honeypot) {
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+      return;
+    }
     
     // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -35,9 +71,9 @@ const Contact = () => {
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+    // Email validation with stricter regex
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!emailRegex.test(formData.email) || formData.email.length > MAX_LENGTHS.email) {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address.",
@@ -46,18 +82,28 @@ const Contact = () => {
       return;
     }
 
+    // Phone validation - only allow digits, spaces, +, -, and ()
+    if (formData.phone && !/^[\d\s+\-()]*$/.test(formData.phone)) {
+      toast({
+        title: "Invalid Phone",
+        description: "Please enter a valid phone number.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Send email using EmailJS
+      // Send email using EmailJS with sanitized inputs
       await emailjs.send(
         'service_ua233rd', // Service ID
         'template_otv6hzc', // Template ID
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone || 'Not provided',
-          message: formData.message,
+          from_name: sanitizeInput(formData.name),
+          from_email: sanitizeInput(formData.email),
+          phone: formData.phone ? sanitizeInput(formData.phone) : 'Not provided',
+          message: sanitizeInput(formData.message),
           to_email: 'naman532002@gmail.com',
         }
       );
@@ -70,7 +116,6 @@ const Contact = () => {
       // Reset form
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
-      console.error('EmailJS Error:', error);
       toast({
         title: "Failed to Send",
         description: "Something went wrong. Please try again or email me directly.",
@@ -127,21 +172,37 @@ const Contact = () => {
             <Card className="p-8 animate-fade-in-up">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field - hidden from users, catches bots */}
+                <div className="absolute opacity-0 -z-10" aria-hidden="true">
+                  <Input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 <div>
                   <Input
                     placeholder="Your Name *"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    maxLength={MAX_LENGTHS.name}
                     disabled={isLoading}
                     required
                   />
+                  <p className="text-xs text-muted-foreground mt-1 text-right">
+                    {formData.name.length}/{MAX_LENGTHS.name}
+                  </p>
                 </div>
                 <div>
                   <Input
                     type="email"
                     placeholder="Your Email *"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    maxLength={MAX_LENGTHS.email}
                     disabled={isLoading}
                     required
                   />
@@ -151,7 +212,8 @@ const Contact = () => {
                     type="tel"
                     placeholder="Your Phone (Optional)"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    maxLength={MAX_LENGTHS.phone}
                     disabled={isLoading}
                   />
                 </div>
@@ -160,10 +222,14 @@ const Contact = () => {
                     placeholder="Your Message *"
                     rows={5}
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    maxLength={MAX_LENGTHS.message}
                     disabled={isLoading}
                     required
                   />
+                  <p className="text-xs text-muted-foreground mt-1 text-right">
+                    {formData.message.length}/{MAX_LENGTHS.message}
+                  </p>
                 </div>
                 <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={isLoading}>
                   {isLoading ? (
